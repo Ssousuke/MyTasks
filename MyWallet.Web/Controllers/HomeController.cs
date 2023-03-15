@@ -1,18 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyWallet.Infra.Repository;
-using MyWallet.Web.Models;
-using System.Diagnostics;
+using MyWallet.Dto.Dto;
+using MyWallet.Infra.Interface;
 
 namespace MyWallet.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly ClientRepository _clientRepository;
+        //private readonly ILogger<HomeController> _logger;
+        private readonly IBaseCrudRepository<ClientDto> _clientRepository;
 
-        public HomeController(ILogger<HomeController> logger, ClientRepository clientRepository)
+        public HomeController(IBaseCrudRepository<ClientDto> clientRepository)
         {
-            _logger = logger;
+            // _logger = logger;
             _clientRepository = clientRepository;
         }
 
@@ -21,15 +20,15 @@ namespace MyWallet.Web.Controllers
             return View(await _clientRepository.GetAll());
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Create(ClientDto dto)
         {
-            return View();
+            var createClient = await _clientRepository.Create(dto);
+            return View(createClient);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult ChangeLog()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
     }
 }

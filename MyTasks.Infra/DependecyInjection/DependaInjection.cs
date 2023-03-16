@@ -18,7 +18,7 @@ namespace MyTasks.Infra.DependecyInjection
                 x => x.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
             services.AddScoped<ILogError, LogErrorRepository>();
-            services.AddScoped<IBaseCrudRepository<ClientDto>, ClientRepository>();
+            services.AddScoped<IBaseCrudRepository<MyTasksDto>, MyTasksRepository>();
             services.AddScoped<IBaseCrudRepository<ProjectDto>, ProjectRepository>();
 
             services.AddAutoMapper(typeof(MappingDomainToDto));

@@ -8,6 +8,6 @@ namespace MyTasks.Domain.Entities
         public string ProjectName { get; private set; }
         public string ProjectDescription { get; private set; }
         public ProjectStep ProjectStep { get; private set; }
-        public ICollection<Client> Clients { get; private set; }
+        public ICollection<MyTask> MyTasks { get; private set; }
     }
 }

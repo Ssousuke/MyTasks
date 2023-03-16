@@ -8,7 +8,7 @@ namespace MyTasks.Infra.AppDbContext
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
 
-        public DbSet<Client> Clients { get; set; }
+        public DbSet<MyTask> MyTasks { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<LogError> LogErrors { get; set; }
 

@@ -7,23 +7,23 @@ namespace Controllers
     public class HomeController : Controller
     {
         //private readonly ILogger<HomeController> _logger;
-        private readonly IBaseCrudRepository<ClientDto> _clientRepository;
+        private readonly IBaseCrudRepository<MyTasksDto> _MyTasksRepository;
 
-        public HomeController(IBaseCrudRepository<ClientDto> clientRepository)
+        public HomeController(IBaseCrudRepository<MyTasksDto> MyTasksRepository)
         {
             // _logger = logger;
-            _clientRepository = clientRepository;
+            _MyTasksRepository = MyTasksRepository;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _clientRepository.GetAll());
+            return View(await _MyTasksRepository.GetAll());
         }
 
-        public async Task<IActionResult> Create(ClientDto dto)
+        public async Task<IActionResult> Create(MyTasksDto dto)
         {
-            var createClient = await _clientRepository.Create(dto);
-            return View(createClient);
+            var createMyTasks = await _MyTasksRepository.Create(dto);
+            return View(createMyTasks);
         }
 
         public IActionResult ChangeLog()

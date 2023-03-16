@@ -7,27 +7,27 @@ using MyTasks.Infra.Interface;
 
 namespace MyTasks.Infra.Repository
 {
-    public class ClientRepository : IBaseCrudRepository<ClientDto>
+    public class MyTasksRepository : IBaseCrudRepository<MyTasksDto>
     {
         private readonly IMapper _mapper;
         private readonly ApplicationDbContext _dBContext;
         private readonly ILogError _log;
 
-        public ClientRepository(IMapper mapper, ApplicationDbContext context, ILogError log)
+        public MyTasksRepository(IMapper mapper, ApplicationDbContext context, ILogError log)
         {
             _dBContext = context;
             _mapper = mapper;
             _log = log;
         }
 
-        public async Task<ClientDto> Create(ClientDto entity)
+        public async Task<MyTasksDto> Create(MyTasksDto entity)
         {
             try
             {
-                var createClient = _mapper.Map<Client>(entity);
-                await _dBContext.Clients.AddAsync(createClient);
+                var createMyTasks = _mapper.Map<MyTask>(entity);
+                await _dBContext.MyTasks.AddAsync(createMyTasks);
                 await _dBContext.SaveChangesAsync();
-                return _mapper.Map<ClientDto>(createClient);
+                return _mapper.Map<MyTasksDto>(createMyTasks);
             }
             catch (Exception ex)
             {
@@ -40,8 +40,8 @@ namespace MyTasks.Infra.Repository
         {
             try
             {
-                Client? deleteClient = await _dBContext.Clients.FindAsync(id);
-                _dBContext.Clients.Remove(deleteClient);
+                MyTask deleteMyTasks = await _dBContext.MyTasks.FindAsync(id);
+                _dBContext.MyTasks.Remove(deleteMyTasks);
                 await _dBContext.SaveChangesAsync();
                 return true;
             }
@@ -52,26 +52,26 @@ namespace MyTasks.Infra.Repository
             }
         }
 
-        public async Task<ICollection<ClientDto>> GetAll()
+        public async Task<ICollection<MyTasksDto>> GetAll()
         {
-            var getAll = await _dBContext.Clients.ToListAsync();
-            return _mapper.Map<ICollection<ClientDto>>(getAll);
+            var getAll = await _dBContext.MyTasks.ToListAsync();
+            return _mapper.Map<ICollection<MyTasksDto>>(getAll);
         }
 
-        public async Task<ClientDto> GetById(Guid id)
+        public async Task<MyTasksDto> GetById(Guid id)
         {
-            var getById = await _dBContext.Clients.FindAsync(id);
-            return _mapper.Map<ClientDto>(getById);
+            var getById = await _dBContext.MyTasks.FindAsync(id);
+            return _mapper.Map<MyTasksDto>(getById);
         }
 
-        public async Task<ClientDto> Update(ClientDto entity)
+        public async Task<MyTasksDto> Update(MyTasksDto entity)
         {
             try
             {
-                var updateClient = _mapper.Map<Client>(entity);
-                _dBContext.Clients.Update(updateClient);
+                var updateMyTasks = _mapper.Map<MyTask>(entity);
+                _dBContext.MyTasks.Update(updateMyTasks);
                 await _dBContext.SaveChangesAsync();
-                return _mapper.Map<ClientDto>(updateClient);
+                return _mapper.Map<MyTasksDto>(updateMyTasks);
             }
             catch (Exception ex)
             {

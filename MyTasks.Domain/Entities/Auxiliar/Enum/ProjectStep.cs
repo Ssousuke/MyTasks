@@ -4,8 +4,8 @@ namespace MyTasks.Domain.Entities.Auxiliar.Enum
 {
     public enum ProjectStep
     {
-        [Description("Aguardando cliente")]
-        AGUARDANDO_CLIENTE = 0,
+        [Description("Aguardando MyTaskse")]
+        AGUARDANDO_MyTasksE = 0,
 
         [Description("Levantamento de requisitos")]
         LEVANTAMENTO_REQUISITOS = 1,

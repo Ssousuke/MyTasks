@@ -8,7 +8,7 @@ namespace MyTasks.Dto.Mapping
     {
         public MappingDomainToDto()
         {
-            CreateMap<Client, ClientDto>().ReverseMap();
+            CreateMap<MyTask, MyTasksDto>().ReverseMap();
             CreateMap<Project, ProjectDto>().ReverseMap();
             CreateMap<LogError, LogErrorDto>().ReverseMap();
         }

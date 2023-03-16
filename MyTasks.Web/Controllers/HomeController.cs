@@ -20,7 +20,14 @@ namespace Controllers
             return View(await _MyTasksRepository.GetAll());
         }
 
-        public async Task<IActionResult> Create(MyTasksDto dto)
+        [HttpGet]
+        public async Task<IActionResult> CreateNewTask()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateNewTask(MyTasksDto dto)
         {
             var createMyTasks = await _MyTasksRepository.Create(dto);
             return View(createMyTasks);

@@ -7,7 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\_PartialView\**" />
+    <Content Remove="Views\_PartialView\**" />
+    <EmbeddedResource Remove="Views\_PartialView\**" />
+    <None Remove="Views\_PartialView\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MyTasks.Infra\MyTasks.Infra.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
   </ItemGroup>
 
 </Project>

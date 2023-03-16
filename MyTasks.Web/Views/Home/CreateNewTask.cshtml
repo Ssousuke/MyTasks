@@ -1,0 +1,42 @@
+﻿@model MyTasks.Dto.Dto.MyTasksDto
+
+@{
+    ViewData["Title"] = "Create new task";
+}
+<div class="container py-5 bg-white text-dark">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4">
+                <div class="card-body">
+                    <h2 class="text-center mb-4"><i class="fa-solid fa-pen-to-square"></i> Create new task</h2>
+                    <form method="post">
+                        <div class="form-group mb-3">
+                            <label asp-for="TaskName" class="form-label"></label>
+                            <input asp-for="TaskName" class="form-control" placeholder="Insira o nome da tarefa" required>
+                            <span asp-validation-for="TaskName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="TaskDescription" class="form-label"></label>
+                            <textarea asp-for="TaskDescription" class="form-control" rows="3" placeholder="Insira a descrição da tarefa"></textarea>
+                            <span asp-validation-for="TaskDescription" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="ProjectId" class="form-label"></label>
+                            <input asp-for="ProjectId" class="form-control" placeholder="Insira o ID do projeto" required>
+                            <span asp-validation-for="ProjectId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <div class="form-check">
+                                <input asp-for="IsActive" class="form-check-input">
+                                <label asp-for="IsActive" class="form-check-label">Ativo:</label>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-outline-dark">Cadastrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

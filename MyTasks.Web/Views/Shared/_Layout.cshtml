@@ -22,7 +22,7 @@
                             <a class="nav-link" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#cadastroModal">
+                            <a class="nav-link" asp-controller="Home" asp-action="CreateNewTask">
                                 <i class="fa-solid fa-plus"></i> MyTasks
                             </a>
                         </li>
@@ -46,39 +46,6 @@
             @RenderBody()
         </main>
     </div>
-
-    <!-- Modal de cadastro -->
-    <div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-black bg-white">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cadastroModalLabel">Cadastro</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="nome" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="nome">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">E-mail</label>
-                            <input type="email" class="form-control" id="email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="senha" class="form-label">Senha</label>
-                            <input type="password" class="form-control" id="senha">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-dark">Cadastrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

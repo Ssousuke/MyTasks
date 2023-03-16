@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ICollection<MyTasks.Dto.Dto.MyTasksDto>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -9,24 +11,15 @@
                 <div class="card-header"><i class="fa-regular fa-hourglass"></i> Aguardando</div>
                 <div class="card-body">
                     <div class="col-md-12">
-                        <div class="card card-task text-white bg-dark mb-3">
-                            <div class="card-header"><i class="fa-solid fa-clipboard-list"></i> Tarefa do Scrum</div>
-                            <div class="card-body">
-                                <p class="card-text">This is the content of the Scrum task card.</p>
+                        @foreach (var item in Model)
+                        {
+                            <div class="card card-task text-white bg-dark mb-3">
+                                <div class="card-header"><i class="fa-solid fa-clipboard-list"></i> @item.TaskName</div>
+                                <div class="card-body">
+                                    <p class="card-text">@item.TaskDescription</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card card-task text-white bg-dark mb-3">
-                            <div class="card-header"><i class="fa-solid fa-clipboard-list"></i> Tarefa do Scrum</div>
-                            <div class="card-body">
-                                <p class="card-text">This is the content of the Scrum task card.</p>
-                            </div>
-                        </div>
-                        <div class="card card-task text-white bg-dark mb-3">
-                            <div class="card-header"><i class="fa-solid fa-clipboard-list"></i> Tarefa do Scrum</div>
-                            <div class="card-body">
-                                <p class="card-text">This is the content of the Scrum task card.</p>
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@
                 <div class="card-header"><i class="fa-regular fa-hourglass"></i> Aguardando</div>
                 <div class="card-body">
                     <div class="col-md-12">
-                        @foreach (var item in Model)
+                        @foreach (var item in Model.Where(x => x.IsActive))
                         {
                             <div class="card card-task text-white bg-dark mb-3">
                                 <div class="card-header"><i class="fa-solid fa-clipboard-list"></i> @item.TaskName</div>
@@ -36,7 +36,17 @@
             <div class="card text-white bg-dark mb-3">
                 <div class="card-header"><i class="fa-solid fa-check"></i> Concluído</div>
                 <div class="card-body">
-                    <p class="card-text">This is the content of card 3.</p>
+                    <div class="col-md-12">
+                        @foreach (var item in Model.Where(x => x.IsActive is false))
+                        {
+                            <div class="card card-task text-white bg-dark mb-3">
+                                <div class="card-header"><i class="fa-solid fa-clipboard-list"></i> @item.TaskName</div>
+                                <div class="card-body">
+                                    <p class="card-text">@item.TaskDescription</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

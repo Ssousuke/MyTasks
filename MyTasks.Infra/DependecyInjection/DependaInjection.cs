@@ -17,7 +17,7 @@ namespace MyTasks.Infra.DependecyInjection
                 .UseSqlServer(config.GetConnectionString("Dev"),
                 x => x.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
-            services.AddScoped<ILogError, LogErrorRepository>();
+            services.AddScoped<ILogErrorRepository, LogErrorRepository>();
             services.AddScoped<IBaseCrudRepository<MyTasksDto>, MyTasksRepository>();
             services.AddScoped<IBaseCrudRepository<ProjectDto>, ProjectRepository>();
 

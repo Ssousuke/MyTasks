@@ -1,5 +1,4 @@
-﻿using MyTasks.Domain.Entities;
-using MyTasks.Domain.Entities.Auxiliar.Enum;
+﻿using MyTasks.Domain.Entities.Auxiliar.Enum;
 
 namespace MyTasks.Dto.Dto
 {
@@ -9,6 +8,5 @@ namespace MyTasks.Dto.Dto
         public string ProjectName { get; set; }
         public string ProjectDescription { get; set; }
         public ProjectStep ProjectStep { get; set; }
-        public ICollection<MyTask> MyTasks { get; set; }
     }
 }

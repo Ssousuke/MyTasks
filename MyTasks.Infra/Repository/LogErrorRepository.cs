@@ -1,12 +1,13 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using MyTasks.Domain.Entities;
 using MyTasks.Dto.Dto;
 using MyTasks.Infra.AppDbContext;
 using MyTasks.Infra.Interface;
 
 namespace MyTasks.Infra.Repository
 {
-    public class LogErrorRepository : ILogError
+    public class LogErrorRepository : ILogErrorRepository
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -25,7 +26,8 @@ namespace MyTasks.Infra.Repository
                 Source = source,
                 CreatedAt = DateTime.UtcNow
             };
-            await _dbContext.AddAsync(logError);
+            var log = _mapper.Map<LogError>(logError);
+            await _dbContext.LogErrors.AddAsync(log);
             await _dbContext.SaveChangesAsync();
             return logError;
         }

@@ -37,6 +37,11 @@ namespace MyTasks.Infra.Repository
             return _mapper.Map<ICollection<ProjectDto>>(projects);
         }
 
+        public Task<ICollection<ProjectDto>> GetByForProjectId(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<ProjectDto> GetById(Guid id)
         {
             var project = await _context.Projects.FindAsync(id);

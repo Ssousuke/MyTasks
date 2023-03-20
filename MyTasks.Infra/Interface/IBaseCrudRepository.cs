@@ -7,5 +7,6 @@
         Task<TEntity> Create(TEntity entity);
         Task<TEntity> Update(TEntity entity);
         Task<bool> Delete(Guid id);
+        Task<ICollection<TEntity>> GetByForProjectId(Guid id);
     }
 }

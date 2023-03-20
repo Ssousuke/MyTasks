@@ -12,7 +12,7 @@ namespace MyTasks.Infra.EntityConfg
             builder.HasKey(x => x.Id);
             builder.Property(x => x.ProjectName).HasMaxLength(75).IsRequired();
             builder.Property(x => x.ProjectDescription).HasMaxLength(150).IsRequired();
-            builder.Property(x => x.ProjectStep).HasDefaultValue(ProjectStep.AGUARDANDO_MyTasksE);
+            builder.Property(x => x.ProjectStep).HasDefaultValue(ProjectStep.EM_ANDAMENTO);
         }
     }
 }

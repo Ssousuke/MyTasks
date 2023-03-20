@@ -24,6 +24,7 @@ namespace MyTasks.Infra.Repository
             {
                 Message = message,
                 Source = source,
+                StackTrace = stackTrace,
                 CreatedAt = DateTime.UtcNow
             };
             var log = _mapper.Map<LogError>(logError);

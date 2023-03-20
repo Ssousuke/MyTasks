@@ -55,5 +55,12 @@ namespace MyTasks.Infra.Repository
             await _dBContext.SaveChangesAsync();
             return _mapper.Map<MyTasksDto>(updateMyTasks);
         }
+
+        public async Task<ICollection<MyTasksDto>> GetByForProjectId(Guid projectId)
+        {
+            var getByProjectId = await _dBContext.MyTasks
+                .Where(x => x.ProjectId == projectId).ToListAsync();
+            return _mapper.Map<ICollection<MyTasksDto>>(getByProjectId);
+        }
     }
 }

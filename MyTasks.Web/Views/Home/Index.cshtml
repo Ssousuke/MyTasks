@@ -1,54 +1,40 @@
-﻿@model ICollection<MyTasks.Dto.Dto.MyTasksDto>
-
+﻿@model IEnumerable<MyTasks.Dto.Dto.ProjectDto>
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card text-white bg-dark mb-3">
-                <div class="card-header"><i class="fa-regular fa-hourglass"></i> Aguardando</div>
-                <div class="card-body">
-                    <div class="col-md-12">
-                        @foreach (var item in Model.Where(x => x.IsActive))
-                        {
-                            <div class="card card-task text-white bg-dark mb-3">
-                                <div class="card-header"><i class="fa-solid fa-clipboard-list"></i> @item.TaskName</div>
-                                <div class="card-body">
-                                    <p class="card-text">@item.TaskDescription</p>
-                                </div>
+        @if (Model.Any())
+        {
+            <div id="app">
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading" id="data-hora-atual"></h4>
+                    <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+                    <hr>
+                    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                </div>
+            </div>
+            <ol class="list-group list-group-numbered">
+                @foreach (var project in Model.OrderBy(x => x.Id))
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">
+                                <a asp-controller="Home" asp-action="GetProjectById" asp-route-id="@project.Id">@project.ProjectName</a>
                             </div>
-                        }
-                    </div>
-                </div>
+                            @project.ProjectStep
+                        </div>
+                        <span class="badge bg-primary rounded-pill">14</span>
+                    </li>
+                }
+            </ol>
+        }
+        else
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Olá, Wesley</strong> Você ainda não cadastrou projetos ou tarefas.
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card text-white bg-dark mb-3">
-                <div class="card-header"><i class="fa-solid fa-list-check"></i> Em atividade</div>
-                <div class="card-body">
-                    <p class="card-text">This is the content of card 2.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card text-white bg-dark mb-3">
-                <div class="card-header"><i class="fa-solid fa-check"></i> Concluído</div>
-                <div class="card-body">
-                    <div class="col-md-12">
-                        @foreach (var item in Model.Where(x => x.IsActive is false))
-                        {
-                            <div class="card card-task text-white bg-dark mb-3">
-                                <div class="card-header"><i class="fa-solid fa-clipboard-list"></i> @item.TaskName</div>
-                                <div class="card-body">
-                                    <p class="card-text">@item.TaskDescription</p>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
+        }
     </div>
 </div>

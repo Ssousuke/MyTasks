@@ -1,0 +1,47 @@
+﻿@model MyTasks.Web.ViewModels.TaskProjectViewModel
+
+@{
+    ViewData["Title"] = "Tarefa: " + @Model.Projects.ProjectName;
+}
+
+<div class="container py-5">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card text-white mb-3">
+                    <div class="card-header bg-dark text-white"><i class="fa-solid fa-circle-exclamation"></i> @Model.Projects.ProjectName</div>
+                    <div class="card-body">
+                        <div class="col-md-12 text-dark">
+                            <p class="card-text"><i class="fa-solid fa-circle-dot"></i> @Model.Projects.ProjectStep</p>
+                            <p class="card-text"><i class="fa-solid fa-circle-dot"></i> @Model.Projects.Id</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="col-md-12">
+                    @if (Model.MyTasksDtos.Any())
+                    {
+                        @foreach (var item in Model.MyTasksDtos.Where(x => x.ProjectId == Model.Projects.Id))
+                        {
+                            <div class="col-md-12">
+                                <div class="card text-white bg-dark mb-3">
+                                    <div class="card-header"><i class="fa-solid fa-list-check"></i> Tarefa: @item.TaskName</div>
+                                    <div class="card-body">
+                                        <p class="card-text"><i class="fa-solid fa-circle-dot"></i> @item.TaskDescription</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>Opsss!</strong> Ainda não foi cadastrado nenhuma tarefa para esse projeto.
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

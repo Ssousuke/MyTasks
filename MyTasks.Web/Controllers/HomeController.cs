@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyTasks.Dto.Dto;
 using MyTasks.Infra.Interface;
+using MyTasks.Web.ViewModels;
 
-namespace Controllers
+namespace MyTasks.Web.Controllers
 {
     public class HomeController : Controller
     {
@@ -22,51 +23,51 @@ namespace Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _MyTasksRepository.GetAll());
+            var project = await _MyProjectRepository.GetAll();
+            return View(project);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> CreateNewTask()
-        {
-            ViewBag.ProjectId = new SelectList(await _MyProjectRepository.GetAll(), "Id", "ProjectName");
-            return View();
-        }
-
-        [HttpPost]
+        [AcceptVerbs("GET", "POST")]
         public async Task<IActionResult> CreateNewTask(MyTasksDto dto)
         {
-            try
+            var method = HttpContext.Request.Method;
+            if (method == "GET")
             {
-                var createMyTasks = await _MyTasksRepository.Create(dto);
+                ViewBag.ProjectId = new SelectList(await _MyProjectRepository.GetAll(), "Id", "ProjectName");
+                return View();
+            }
+            else if (method == "POST")
+            {
+                await _MyTasksRepository.Create(dto);
                 return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            else
             {
-                await _log.Create(ex.Message, ex.StackTrace, ex.Source);
                 return View();
             }
         }
 
-        [HttpGet]
-        public async Task<IActionResult> CreateNewProject()
+        [HttpGet("projectId/{id}")]
+        public async Task<IActionResult> GetProjectById(Guid id)
         {
-            return View();
+            var viewModel = new TaskProjectViewModel()
+            {
+                Projects = await _MyProjectRepository.GetById(id),
+                MyTasksDtos = await _MyTasksRepository.GetByForProjectId(id),
+            };
+            return View(viewModel);
         }
 
-        [HttpPost]
+        [AcceptVerbs("GET", "POST")]
         public async Task<IActionResult> CreateNewProject(ProjectDto dto)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
-            var newProect = await _MyProjectRepository.Create(dto);
+            await _MyProjectRepository.Create(dto);
             return RedirectToAction("Index");
 
-        }
-        public IActionResult ChangeLog()
-        {
-            return View();
         }
     }
 }

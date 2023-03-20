@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTasks.Dto", "MyTasks.Dto\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTasks.Infra", "MyTasks.Infra\MyTasks.Infra.csproj", "{077F81B4-0902-46E8-9B03-4D20DE40AD6B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTasks..Web", "MyTasks.Web\MyTasks..Web.csproj", "{73B573CE-9D75-4D4C-9F43-552E4B8AE26C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTasks.Web", "MyTasks.Web\MyTasks.Web.csproj", "{73B573CE-9D75-4D4C-9F43-552E4B8AE26C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
